@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Preguntas</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div id="container">
+        <div id="question-container">
+            <div id="fruit-container">
+                <img id="fruit-image" src="fruit.png" alt="Fruta">
+            </div>
+            <h1 id="header-text">Bienvenido</h1>
+            <p id="question-text"></p>
+            <div id="options-container"></div>
+            <div id="timer-container">
+                <div id="timer"></div>
+            </div>
+            <div id="start-container">
+                <button id="start-button">Iniciar</button>
+            </div>
+            <div id="message-container"></div>
+        </div>
+    </div>
+
+    <div id="modal-container">
+        <div id="modal-content">
+            <p id="result-text"></p>
+            <button id="volver-a-jugar">Volver a jugar</button>
+        </div>
+    </div>
+
+    <script>
+        let preguntas;
+        let preguntaActual = 0;
+        let respuestasCorrectas = 0;
+        let tiempoAgotado = false;
+        let intervaloTemporizador = null;
+
+        const headerText = document.getElementById('header-text');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const timerElement = document.getElementById('timer');
+        const startContainer = document.getElementById('start-container');
+        const messageContainer = document.getElementById('message-container');
+        const modalContainer = document.getElementById('modal-container');
+        const resultText = document.getElementById('result-text');
+        const volverAJugarButton = document.getElementById('volver-a-jugar');
+
+        function mostrarMensaje(mensaje) {
+            messageContainer.textContent = mensaje;
+            messageContainer.style.display = 'block';
+            setTimeout(() => {
+                messageContainer.style.display = 'none';
+            }, 1000);
+        }
+
+        function iniciarJuego() {
+            startContainer.innerHTML = '';
+            headerText.textContent = 'Pregunta';
+
+            cargarPreguntas(function(data) {
+                preguntas = data;
+                mostrarPregunta(preguntas[preguntaActual]);
+            });
+        }
+
+        function mostrarBotonIniciar() {
+            startContainer.innerHTML = '<button id="start-button">Iniciar</button>';
+            const startButton = document.getElementById('start-button');
+            startButton.addEventListener('click', iniciarJuego);
+        }
+
+        function mostrarResultadoFinal() {
+            resultText.textContent = `Juego terminado. Respuestas correctas: ${respuestasCorrectas}/${preguntas.length}`;
+            modalContainer.style.display = 'block';
+        }
+
+        function reiniciarJuego() {
+            preguntaActual = 0;
+            respuestasCorrectas = 0;
+            tiempoAgotado = false;
+            clearInterval(intervaloTemporizador);
+            modalContainer.style.display = 'none';
+            iniciarJuego();
+        }
+
+        volverAJugarButton.addEventListener('click', reiniciarJuego);
+
+        mostrarBotonIniciar();
+
+        function mostrarPregunta(pregunta) {
+            tiempoAgotado = false;
+            questionText.textContent = pregunta.pregunta;
+            optionsContainer.innerHTML = '';
+
+            pregunta.respuestas.forEach(respuesta => {
+                const option = document.createElement('button');
+                option.textContent = respuesta;
+                option.addEventListener('click', function() {
+                    if (respuesta === pregunta.respuestaCorrecta) {
+                        respuestasCorrectas++;
+                        mostrarMensaje('Correcto');
+                    } else {
+                        mostrarMensaje('Incorrecto');
+                    }
+                    pasarSiguientePregunta();
+                });
+                optionsContainer.appendChild(option);
+            });
+
+            iniciarTemporizador();
+        }
+
+        function iniciarTemporizador() {
+            let tiempoRestante = 10;
+            clearInterval(intervaloTemporizador);
+            intervaloTemporizador = setInterval(() => {
+                tiempoRestante--;
+                timerElement.textContent = tiempoRestante;
+
+                if (tiempoRestante === 0) {
+                    clearInterval(intervaloTemporizador);
+                    tiempoAgotado = true;
+                    mostrarMensaje('Se acabó el tiempo');
+                    pasarSiguientePregunta();
+                }
+            }, 1000);
+        }
+
+        function pasarSiguientePregunta() {
+            preguntaActual++;
+            if (preguntaActual < preguntas.length) {
+                mostrarPregunta(preguntas[preguntaActual]);
+            } else {
+                clearInterval(intervaloTemporizador);
+                mostrarResultadoFinal();
+            }
+        }
+
+        function cargarPreguntas(callback) {
+            const xhr = new XMLHttpRequest();
+            xhr.overrideMimeType("application/json");
+            xhr.open('GET', 'preguntas.json', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    callback(JSON.parse(xhr.responseText));
+                }
+            };
+            xhr.send(null);
+        }
+    </script>
+</body>
+</html>

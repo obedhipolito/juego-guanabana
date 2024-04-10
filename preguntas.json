@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "pregunta": "¿A que familia pertenece la guanabana",
+        "respuestas": ["Annonaceae", "Myrtracea", "Guanaceae"],
+        "respuestaCorrecta": "Annonaceae"
+    },
+    {
+        "id": 2,
+        "pregunta": "¿Cual es la temporada de la guanabana?",
+        "respuestas": ["Mayo-Noviembre", "Abril-Octubre", "Abril-Noviembre"],
+        "respuestaCorrecta": "Abril-Noviembre"
+    },
+    {
+        "id": 3,
+        "pregunta": "La cascara, semillas y hojas de la guanabana sirve tanto como la pulpa...",
+        "respuestas": ["Verdadero", "Falso"],
+        "respuestaCorrecta": "Verdadero"
+    }
+]

@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('/imagenes/guanabanaFondo.jpg');
+}
+
+#titulo{
+    font-size: 40px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#fruit-container {
+    margin-bottom: 20px;
+}
+
+#fruit-image {
+    width: 150px; /* Ajusta el tamaño de la imagen según sea necesario */
+}
+
+#question-container {
+    text-align: center;
+    background-color: #eea2de;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+#timer-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#timer {
+    font-size: 24px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+button{
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.option:hover {
+    background-color: #0056b3;
+}
+#modal-container {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modal-content {
+    background-color: #eea2de;
+    margin: 20% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10%;
+    width: 30%;
+    text-align: center;
+}
