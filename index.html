@@ -88,7 +88,8 @@
 
         function mostrarResultadoFinal() {
             const puntuacionTotal = calcularPuntuacion();
-            resultText.textContent = `Juego terminado. Respuestas correctas: ${respuestasCorrectas}/${preguntas.length}. tu puntuacion: ${puntuacionTotal} puntos.`;
+
+            resultText.textContent = `Juego terminado. Respuestas correctas: ${respuestasCorrectas}/${preguntas.length}. tu guanabana quedo en la fase: ${faseActual} y tu puntuacion es: ${puntuacionTotal} puntos.`;
             modalContainer.style.display = 'block';
         }
 
