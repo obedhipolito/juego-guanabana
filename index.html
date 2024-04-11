@@ -9,6 +9,7 @@
 </head>
 <body>
     <div id="container">
+        <h1 id="title">Hervest the Annona</h1>
         <div id="question-container">
             <div id="fruit-container">
                 <img id="fruit-image" src="fruit.png" alt="Fruta">
@@ -37,8 +38,18 @@
         let preguntas;
         let preguntaActual = 0;
         let respuestasCorrectas = 0;
+        let respuestasCorrectasConsecutivas = 0;
         let tiempoAgotado = false;
         let intervaloTemporizador = null;
+        let faseActual = 0;
+
+        const imagenesFrutas = [
+            '/imagenes/fase1.png',
+            '/imagenes/fase2.png',
+            '/imagenes/fase3.png',
+            '/imagenes/fase4.png',
+            '/imagenes/fase5.png',
+        ];
 
         const headerText = document.getElementById('header-text');
         const questionText = document.getElementById('question-text');
@@ -49,6 +60,7 @@
         const modalContainer = document.getElementById('modal-container');
         const resultText = document.getElementById('result-text');
         const volverAJugarButton = document.getElementById('volver-a-jugar');
+        const fruitImage = document.getElementById('fruit-image');
 
         function mostrarMensaje(mensaje) {
             messageContainer.textContent = mensaje;
@@ -75,13 +87,15 @@
         }
 
         function mostrarResultadoFinal() {
-            resultText.textContent = `Juego terminado. Respuestas correctas: ${respuestasCorrectas}/${preguntas.length}`;
+            const puntuacionTotal = calcularPuntuacion();
+            resultText.textContent = `Juego terminado. Respuestas correctas: ${respuestasCorrectas}/${preguntas.length}. tu puntuacion: ${puntuacionTotal} puntos.`;
             modalContainer.style.display = 'block';
         }
 
         function reiniciarJuego() {
             preguntaActual = 0;
             respuestasCorrectas = 0;
+            respuestasCorrectasConsecutivas = 0;
             tiempoAgotado = false;
             clearInterval(intervaloTemporizador);
             modalContainer.style.display = 'none';
@@ -103,9 +117,15 @@
                 option.addEventListener('click', function() {
                     if (respuesta === pregunta.respuestaCorrecta) {
                         respuestasCorrectas++;
+                        respuestasCorrectasConsecutivas++;
                         mostrarMensaje('Correcto');
                     } else {
+                        respuestasCorrectasConsecutivas = 0;
                         mostrarMensaje('Incorrecto');
+                    }
+                    if (respuestasCorrectasConsecutivas === 2) {
+                        cambiarImagenFruit();
+                        respuestasCorrectasConsecutivas = 0;
                     }
                     pasarSiguientePregunta();
                 });
@@ -115,8 +135,14 @@
             iniciarTemporizador();
         }
 
+        function cambiarImagenFruit() {
+            const rutaImagenFruta = imagenesFrutas[faseActual];
+            fruitImage.src = rutaImagenFruta;
+            faseActual++;
+        }
+
         function iniciarTemporizador() {
-            let tiempoRestante = 10;
+            let tiempoRestante = 16;
             clearInterval(intervaloTemporizador);
             intervaloTemporizador = setInterval(() => {
                 tiempoRestante--;
@@ -151,6 +177,13 @@
                 }
             };
             xhr.send(null);
+        }
+
+        function calcularPuntuacion() {
+            puntuacionPreguntas = respuestasCorrectas/preguntas.length;
+            puntuacionFase = faseActual/5;
+            puntuacionTotal = (puntuacionPreguntas + puntuacionFase)*100;
+            return puntuacionTotal;
         }
     </script>
 </body>
