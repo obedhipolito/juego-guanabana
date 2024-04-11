@@ -1,19 +1,61 @@
 [
     {
         "id": 1,
-        "pregunta": "¿A que familia pertenece la guanabana",
-        "respuestas": ["Annonaceae", "Myrtracea", "Guanaceae"],
+        "pregunta": "¿A que familia pertenece la guanabana?",
+        "respuestas": ["Annonaceae", "Myrtraceae", "Guanaceae"],
         "respuestaCorrecta": "Annonaceae"
     },
     {
         "id": 2,
         "pregunta": "¿Cual es la temporada de la guanabana?",
-        "respuestas": ["Mayo-Noviembre", "Abril-Octubre", "Abril-Noviembre"],
-        "respuestaCorrecta": "Abril-Noviembre"
+        "respuestas": ["Mayo-noviembre", "Abril-octubre", "Abril-noviembre"],
+        "respuestaCorrecta": "Abril-noviembre"
     },
     {
         "id": 3,
-        "pregunta": "La cascara, semillas y hojas de la guanabana sirve tanto como la pulpa...",
+        "pregunta": "La cáscara, semillas y hojas de la guanabana sirven tanto como la pulpa...",
+        "respuestas": ["Verdadero", "Falso"],
+        "respuestaCorrecta": "Verdadero"
+    },
+    {
+        "id": 4,
+        "pregunta": "Componente de la guanabana que comprende una fuente potencial para el desarrollo de medicamentos contra el cáncer",
+        "respuestas": ["Acetocianinas", "Acetoamilinas", "Acetogeninas"],
+        "respuestaCorrecta": "Acetogeninas"
+    },
+    {
+        "id": 5,
+        "pregunta": "No son una propiedad de la guanabana, excepto:",
+        "respuestas": ["Inmunológica", "Antifúngica", "Antiarrugas"],
+        "respuestaCorrecta": "Antiarrugas"
+    },
+    {
+        "id": 6,
+        "pregunta": "Antioxidantes de la guanabana",
+        "respuestas": ["Vitamina E y C", "Vitamina E y K", "Vitamina K y D"],
+        "respuestaCorrecta": "Vitamina E y C"
+    },
+    {
+        "id": 7,
+        "pregunta": "Función de las acetogeninas",
+        "respuestas": ["Crean células cancerígenas", "Necrosis de células cancerígenas", "“Congelan” células cancerígenas"],
+        "respuestaCorrecta": "Necrosis de células cancerígenas"
+    },
+    {
+        "id": 8,
+        "pregunta": "Compuestos fenólicos más abundantes encontrados en la guanabana",
+        "respuestas": ["Rutina, epicacenina, quercetina-3-glucosódico", "Rucina, epicacenina, quercetina-3-glucosódico", "Rutina, epicatequina, quercetina-3-glucósido"],
+        "respuestaCorrecta": "Rutina, epicacenina, quercetina-3-glucosódico"
+    },
+    {
+        "id": 9,
+        "pregunta": "¿La guanabana está constituida mayormente por fibra insoluble o soluble?",
+        "respuestas": ["Insoluble", "Soluble"],
+        "respuestaCorrecta": "Soluble"
+    },
+    {
+        "id": 10,
+        "pregunta": "La guanabana contiene ácido Gálico",
         "respuestas": ["Verdadero", "Falso"],
         "respuestaCorrecta": "Verdadero"
     }
