@@ -27,7 +27,7 @@
         "id": 5,
         "pregunta": "No son una propiedad de la guanabana, excepto:",
         "respuestas": ["Inmunológica", "Antifúngica", "Antiarrugas"],
-        "respuestaCorrecta": "Antiarrugas"
+        "respuestaCorrecta": "Inmunológica"
     },
     {
         "id": 6,
